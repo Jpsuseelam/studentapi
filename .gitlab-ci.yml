@@ -1,0 +1,31 @@
+# GitLab CI example
+stages:
+  - build
+  - test
+  - deploy-staging
+  - release-production
+
+build:
+  stage: build
+  script:
+    - mvn clean compile
+    - mvn test
+  artifacts:
+    paths:
+      - target/ # store build artifacts
+  only:
+    - develop
+    - feature/*
+  tags:
+    - maven
+
+test:
+  stage: test
+  script:
+    - mvn verify # for integration and end-to-end tests
+  dependencies:
+    - build
+  only:
+    - develop
+  tags:
+    - maven
