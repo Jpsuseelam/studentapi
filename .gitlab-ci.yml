@@ -1,4 +1,4 @@
-# GitLab CI example
+# GitLab CI process
 stages:
   - build
   - test
